@@ -1,12 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import Login from './pages/Login';
-
-// import { Container } from './styles';
+import Routes from './Routes';
 
 const App = () => {
-  return <Login />;
+  return <Routes />;
 };
 
 export default App;
