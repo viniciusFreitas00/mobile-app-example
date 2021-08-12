@@ -19,7 +19,7 @@ const Login = ({ navigation }) => {
   }
 
   return (
-    <View style={{ backgroundColor: '#1F2421', flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: '#1F2421' }}>
       <StatusBar backgroundColor="#1F2421" />
       <View style={{ flex: 1, justifyContent: 'flex-end' }}>
         <Text style={{ fontSize: 40, textAlign: 'center', color: '#dadada' }}>

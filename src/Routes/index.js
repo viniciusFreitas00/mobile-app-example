@@ -3,21 +3,17 @@ import { useSelector } from 'react-redux';
 
 import { usuario } from '../store/selectors';
 import LoginRoutes from './login.routes';
-
-import { View, Text } from 'react-native';
+import Home from '../pages/Home'
 
 const Routes = () => {
-  const dadosUsuario = useSelector(store => store);
+  const dadosUsuario = useSelector(usuario);
 
-  console.log(dadosUsuario)
+  if (dadosUsuario.logged) {
+    return (
+      <Home />
+    );
+  }
 
-  // if (dadosUsuario.logged) {
-  //   return (
-  //     <View>
-  //       <Text>HJhjhjhjh</Text>
-  //     </View>
-  //   );
-  //}
   return <LoginRoutes />;
 };
 

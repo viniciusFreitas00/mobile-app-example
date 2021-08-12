@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  Container: { backgroundColor: '#1F2421', flex: 1 },
+  Container: { flex: 1, backgroundColor: '#1F2421' },
   LogoContainer: { flex: 1, justifyContent: 'flex-end' },
   Body: {
     flex: 3,
