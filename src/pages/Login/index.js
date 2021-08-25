@@ -1,21 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
   TextInput,
   TouchableOpacity,
   StatusBar,
+  Alert,
+  Modal,
+  ActivityIndicator,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { login } from '../../store/actions';
 
-// import styles from './styles';
+import api from '../../services/api';
+import { login } from '../../store/actions';
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  function loging() {
-    dispatch(login({ nome: 'nome', email: 'email' }));
+  async function loging() {
+    setIsLoading(true);
+    try {
+      const { data } = await api.post('/login', {
+        email: email,
+        senha: senha,
+      });
+
+      dispatch(login(data));
+    } catch (e) {
+      setIsLoading(false);
+      Alert.alert('Erro', 'Usuário ou Email inválidos');
+    }
   }
 
   return (
@@ -38,7 +55,9 @@ const Login = ({ navigation }) => {
             borderRadius: 5,
           }}
           placeholder="Email"
+          onChangeText={setEmail}
           placeholderTextColor="rgba(0,0,0, 0.7)"
+          autoCapitalize='none'
         />
         <TextInput
           style={{
@@ -51,6 +70,7 @@ const Login = ({ navigation }) => {
           }}
           placeholder="Senha"
           secureTextEntry={true}
+          onChangeText={setSenha}
           placeholderTextColor="rgba(0,0,0, 0.7)"
         />
         <TouchableOpacity
@@ -79,6 +99,27 @@ const Login = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
       </View>
+      <Modal transparent={true} visible={isLoading}>
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: 'rgba(0,0,0,0.7)',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          <View
+            style={{
+              backgroundColor: '#fff',
+              flexDirection: 'row',
+              alignItems: 'center',
+              padding: 15,
+              borderRadius: 20,
+            }}>
+            <ActivityIndicator color="#000" size="large" />
+            <Text style={{ marginLeft: 10 }}>Carregando..</Text>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };

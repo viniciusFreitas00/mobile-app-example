@@ -1,6 +1,7 @@
 import { LOGIN, LOGOUT } from '../actionTypes';
 
 const initialState = {
+  id: 0,
   nome: '',
   email: '',
   logged: false,
@@ -11,6 +12,7 @@ export default usuario = (state = initialState, action) => {
     case LOGIN:
       return {
         ...state,
+        id: action.payload.id,
         nome: action.payload.nome,
         email: action.payload.email,
         logged: true,
