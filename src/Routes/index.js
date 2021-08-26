@@ -3,14 +3,14 @@ import { useSelector } from 'react-redux';
 
 import { usuario } from '../store/selectors';
 import LoginRoutes from './login.routes';
-import Home from '../pages/Home'
+import HomeRoutes from './home.routes'
 
 const Routes = () => {
   const dadosUsuario = useSelector(usuario);
 
   if (dadosUsuario.logged) {
     return (
-      <Home />
+      <HomeRoutes />
     );
   }
 

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/actions';
 import { usuario } from '../../store/selectors';
 
-const Home = () => {
+const Home = ({navigation}) => {
   const dispatch = useDispatch();
   const dadosUsuario = useSelector(usuario);
 
@@ -41,6 +41,7 @@ const Home = () => {
           <Text style={{ fontSize: 20 }}>Sair</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={() => navigation.navigate('Flatlist')}
           style={{
             backgroundColor: '#dce1de',
             paddingVertical: 15,
